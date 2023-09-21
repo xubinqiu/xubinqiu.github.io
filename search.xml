@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Markdown高级语法</title>
+    <url>/markdown-advance-syntax.html</url>
+    <content><![CDATA[<p>只有少数编辑器支持，或者需要安装相应的扩展渲染，使用前请先预览确认。</p>
+<span id="more"></span>
+
+<h1 id="定义列表"><a href="#定义列表" class="headerlink" title="定义列表"></a>定义列表</h1><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">Term 1</span><br><span class="line">Term 2</span><br><span class="line">:   Definition A</span><br><span class="line">:   Definition B</span><br></pre></td></tr></table></figure>
+
+<p>会被编译成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dd</span>&gt;</span>Term 1<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dd</span>&gt;</span>Term 2<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dt</span>&gt;</span>Definition A<span class="tag">&lt;<span class="name">dt</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dt</span>&gt;</span>Definition A<span class="tag">&lt;<span class="name">dt</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><p>通过<code>[TOC]</code>标记来插入目录。</p>
+<p>在编辑器不支持<code>[TOC]</code>标记的情况下可以使用添加id的方法构建目录。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section">## Directory</span></span><br><span class="line"><span class="bullet">*</span> [<span class="string">1.Content one</span>](<span class="link">#chapter1</span>)</span><br><span class="line"><span class="bullet">*</span> [<span class="string">2.Content two</span>](<span class="link">#chapter2</span>)</span><br><span class="line"></span><br><span class="line"><span class="section">## <span class="language-xml"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;chapter1&quot;</span>&gt;</span></span>1.Content one<span class="language-xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span></span><br><span class="line"><span class="section">## <span class="language-xml"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;chapter2&quot;</span>&gt;</span></span>2.Content two<span class="language-xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="TeX公式"><a href="#TeX公式" class="headerlink" title="TeX公式"></a>TeX公式</h1><p>内联的TeX公式使用一个美元符号标记。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">$\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$</span><br></pre></td></tr></table></figure>
+
+<p>会被编译成<br>内联（行内）公式：$\Gamma(n) &#x3D; (n-1)!\quad\forall n\in\mathbb N$</p>
+<p>TeX公式块用独占一行的两个美元符号来标记。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">$$\left \lbrace \sum<span class="emphasis">_&#123;i=0&#125;^n i^3 = \frac&#123;(n^2+n)(n+6)&#125;&#123;9&#125; \right \rbrace$$</span></span><br></pre></td></tr></table></figure>
+
+<p>会被编译成</p>
+<p>$$\left \lbrace \sum_{i&#x3D;0}^n i^3 &#x3D; \frac{(n^2+n)(n+6)}{9} \right \rbrace$$</p>
+<p>如果你的编辑器不支持这个功能，可以手动解决。首先引入mathjax脚本：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>之后，在需要插入公式的地方使用 <code>&lt;script&gt;</code> 标签包裹公式：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;math/tex&quot;</span>&gt;</span></span>\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N<span class="language-xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;math/tex; mode=display&quot;</span>&gt;</span></span></span><br><span class="line">\Gamma(z) = \int<span class="emphasis">_0^\infty t^&#123;z-1&#125;e^&#123;-t&#125;dt\,.</span></span><br><span class="line"><span class="emphasis"><span class="language-xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span></span><br></pre></td></tr></table></figure>
+
+<p>以上公式展示效果，在实际显示过程中，根据网络加载速度不同会有不同的解析展示速度，TeX的语法参考请见<a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference">这里</a>。</p>
+<h1 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h1><p>语法为在代码块开始行后面加入语法声明，如 ```mermaid ，然后可以像这样来画uml时序图：</p>
+<pre class="mermaid">sequenceDiagram
+  Alice->>Bob: Hello Bob,how are you?
+  Note right of Bob: Bob thinks
+  Bob-->>Alice: I am fine thanks! and U?
+  Note left of Alice: SB</pre>
+
+<p>其MarkDown代码如下：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">\<span class="code">`\`</span>\`mermaid</span><br><span class="line">sequenceDiagram</span><br><span class="line">  Alice-&gt;&gt;Bob: Hello Bob,how are you?</span><br><span class="line">  Note right of Bob: Bob thinks</span><br><span class="line">  Bob--&gt;&gt;Alice: I am fine thanks! and U?</span><br><span class="line">  Note left of Alice: SB</span><br><span class="line">\<span class="code">`\`</span>\` #代码块标识会被解析，实际上写代码块时不用添加转义符“\”</span><br></pre></td></tr></table></figure>
+
+<p>时序图的语法请见 <a href="https://mermaidjs.github.io/sequenceDiagram.html">这里</a> 或 <a href="http://bramp.github.io/js-sequence-diagrams/">这里</a>。</p>
+<p>uml流程图：</p>
+<pre class="mermaid">  graph LR;
+    A-->B & C-->D;</pre>
+
+<p>其实现代码如下：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">\<span class="code">`\`</span>\`mermaid</span><br><span class="line">graph LR;</span><br><span class="line">  A--&gt;B &amp; C--&gt;D;</span><br><span class="line">\<span class="code">`\`</span>\`</span><br></pre></td></tr></table></figure>
+
+<p>流程图的语法请见 <a href="https://mermaidjs.github.io/flowchart.html">这里</a>， 更复杂点的flowchart可以看 <a href="http://adrai.github.io/flowchart.js/">这里</a> 。</p>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><ol>
+<li><a href="/how-to-draw-flowchart-with-markdown.html">MarkDown文档中如何画出流程图</a></li>
+<li><a href="https://github.com/wizardforcel/markdown-simple-world">https://github.com/wizardforcel/markdown-simple-world</a></li>
+<li><a href="http://stevenshi.me/2017/06/26/hexo-insert-formula/">http://stevenshi.me/2017/06/26/hexo-insert-formula/</a></li>
+<li><a href="https://blog.csdn.net/u013282174/article/details/80666123">https://blog.csdn.net/u013282174/article/details/80666123</a></li>
+<li><a href="https://www.liuyude.com/How_to_make_your_HEXO_blog_support_handwriting_flowchart.html">https://www.liuyude.com/How_to_make_your_HEXO_blog_support_handwriting_flowchart.html</a></li>
+<li><a href="https://mermaidjs.github.io/">https://mermaidjs.github.io/</a></li>
+</ol>
+<script type="text/javascript" async
+  src="https://unpkg.com/mermaid@9.1.1/dist/mermaid.min.js">
+</script>
+]]></content>
+      <categories>
+        <category>学编程</category>
+      </categories>
+      <tags>
+        <tag>混技能</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Cheng&#39;s lab</title>
+    <url>/academia-example.html</url>
+    <content><![CDATA[<h1 id="Electronicsheat-Lab-of-Prof-Cheng"><a href="#Electronicsheat-Lab-of-Prof-Cheng" class="headerlink" title="Electronicsheat Lab of Prof. Cheng"></a>Electronicsheat Lab of Prof. Cheng</h1><p>wait to fill in later</p>
+<blockquote>
+<p>实验室进展1</p>
+</blockquote>
+<blockquote>
+<p>实验室进展2</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">date:</span> <span class="number">2023-8</span><span class="number">-22</span> <span class="number">16</span><span class="string">:59:16</span>    <span class="string">//一般情况下修改这个时间到最新就会排前面</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="Lab-Leader"><a href="#Lab-Leader" class="headerlink" title="Lab Leader"></a>Lab Leader</h1><p>程哲老师于2023年3月加入北京大学集成电路学院，担任研究员、博导、助理教授，兼职北大纳光电子中心。主要研究方向为电子器件的热管理（特别是三维集成和芯粒）、热测量、热学电学协同设计。程哲老师于2019年12月博士毕业于Georgia Tech，师从Prof. Samuel Graham (现为马里兰大学工学院院长)；2020年1月至2022年12月在UIUC进行博士后训练，合作导师为Prof. David Cahill (美国人文与科学院院士)；2019年在日本名古屋大学做特别研究学生，师从天野浩教授（诺贝尔物理奖得主）。Researchgate 主页：<a href="https://www.researchgate.net/profile/Zhe-Cheng-3">https://www.researchgate.net/profile/Zhe-Cheng-3</a></p>
+<p>Prof. Zhe Cheng joined the School of Integrated Circuit at Peking University as an assistant professor in Mar. 2023. Prof. Zhe Cheng obtained his PhD at Georgia Tech in Dec. 2019 before moving to UIUC for his postdoc training in Jan. 2020. He also got a Master degree at Iowa State University and was a special research student at Nagoya University. His research focuses on thermal management, thermal characterizations, electro-thermo co-design of microelectronics.</p>
+<h1 id="Lab-Progress"><a href="#Lab-Progress" class="headerlink" title="Lab Progress"></a>Lab Progress</h1><ul>
+<li>进展1</li>
+<li>进展2</li>
+<li>进展3</li>
+</ul>
+<h1 id="Publications"><a href="#Publications" class="headerlink" title="Publications"></a>Publications</h1><ol>
+<li>Lee H, Zhou Y, Jung S, Li H, Cheng Z, He J, Chen J, Sokalski P, Dolocan A, Gearba‐Dolocan R. High‐Pressure Synthesis and Thermal Conductivity of Semimetallic θ‐Tantalum Nitride. Advanced Functional Materials. 2023:2212957.</li>
+<li>Feng T, Zhou H, Cheng Z, Larkin L, Neupane M. A Critical Review of Thermal Transport across Wide and Ultrawide Bandgap Semiconductor Interfaces. ACS Applied Materials &amp; Interfaces (Accepted, Invited Review). 2023.</li>
+<li>Cheng Z. (Invited, Digital Presentation) Thermal Conductance across Heterogeneously Integrated Interfaces for Thermal Management of Wide and Ultra-Wide Bandgap Electronics. Electrochemical Society Meeting Abstracts 241. 2022;(31):1318-1318.</li>
+<li>Cheng Z, Shi J, Graham S. Fundamental understanding of thermal transport across solid interfaces. In: Thermal Management of Gallium Nitride Electronics. Elsevier; 2022. pp. 69-82.</li>
+<li>Cheng Z, Zahiri B, Kwon P, Braun PV, Cahill DG. Ionic Peltier Effect in Li Ion Battery Electrolytes. arXiv preprint arXiv:2211.14949. 2022.</li>
+<li>Lundh JS, Masten HN, Sasaki K, Jacobs AG, Cheng Z, Spencer J, Chen L, Gallagher J, Koehler AD, Konishi K. AlN-capped β-(AlxGal-x)2O3&#x2F;Ga2O3 heterostructure field-effect transistors for near-junction thermal management of next generation power devices. 2022 Device Research Conference (DRC). 2022:1-2.</li>
+<li>Cheng Z, Liang J, Kawamura K, Zhou H, Asamura H, Uratani H, Tiwari J, Graham S, Ohno Y, Nagai Y. High thermal conductivity in wafer-scale cubic silicon carbide crystals. Nature Communications. 2022;13(1):7201.</li>
+<li>Liang* J, Nagai H, Cheng* Z, Kawamura K, Shimizu Y, Ohno Y, Sakaida Y, Uratani H, Yoshida H, Nagai Y. Selective Direct Bonding of High Thermal Conductivity 3C-SiC Film to β-Ga2O3 for Top-Side Heat Extraction. arXiv preprint arXiv:2209.05669. 2022.</li>
+<li>Cheng* Z, Ji X, Cahill DG. Battery absorbs heat during charging uncovered by ultra-sensitive thermometry. Journal of Power Sources. 2022;518:230762.</li>
+<li>Cheng* Z, Graham S, Amano H, Cahill DG. Perspective on thermal conductance across heterogeneously integrated interfaces for wide and ultrawide bandgap electronics. Applied Physics Letters. 2022;120(3):030501.</li>
+<li>Green AJ, Speck J, Xing G, Moens P, Allerstam F, Gumaelius K, Neyer T, Arias-Purdue A, Mehrotra V, Kuramata A. Roadmap – β-Gallium oxide power electronics. APL Materials. 2022;10(2):029201.</li>
+<li>Cheng* Z, Graham S. Room-temperature bonded thermally conductive semiconductor interfaces. In: Thermal Management of Gallium Nitride Electronics. Woodhead Publishing; 2022. pp. 359-377.</li>
+</ol>
+<h1 id="People"><a href="#People" class="headerlink" title="People"></a>People</h1><p>填各位成员的照片、信息添加网址链接用着一条命令 <a href="https://github.com/academicpages/academicpages.github.io">academicpages</a> </p>
+<p>备注（The theme adopts only <code>post</code> and <code>page</code> in Hexo to show your informations. For an academic page, it’s important to be simple and obvious.）</p>
+<p>Example page: <a href="https://phosphorw.github.io/">phosphorw.github.io</a></p>
+<!-- 若要添加图片，参考下面这条代码： -->
+<p><img src="https://raw.githubusercontent.com/PhosphorW/phower-img-folder/master/hexo-theme-academia_mockup.jpg" alt="mockup"> </p>
+<h2 id="Research"><a href="#Research" class="headerlink" title="Research"></a>Research</h2><p>Ongoing Research 1:<br>Ongoing Research 2:<br>Ongoing Research 3:</p>
+<!-- 
+下面这一段是关于若要添加下载链接时候的代码示例，先comment掉了
+The simplest way to install is to clone the entire repository:
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/PhosphorW/hexo-theme-academia.git themes/Academia</span><br></pre></td></tr></table></figure>
+
+<p>Some required renderers:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-renderer-pug hexo-renderer-stylus --save</span><br></pre></td></tr></table></figure>
+
+<p>Set theme in hexo work folder’s <code>_config.yml</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">theme: Academia</span><br><span class="line">``` --&gt;</span><br><span class="line"></span><br><span class="line"># News</span><br><span class="line">waiting to be filled</span><br><span class="line"></span><br><span class="line">下面这段代码讲怎么添加post，因暂时用不到所以先comment掉了</span><br><span class="line">Only `post` and `page` are supported in this theme.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>hexo n post “any title”</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">or</span><br></pre></td></tr></table></figure>
+<p>hexo n page “any title”</p>
+<pre><code>
+**Important:** &lt;/br&gt;
+Add `academia: true` in front_matter filed in `post .md`.
+
+&lt;img src=&quot;https://raw.githubusercontent.com/PhosphorW/phower-img-folder/master/hexo-theme-academia_front-matter.png&quot; width=&quot;660px&quot; alt=&quot;front_matter&quot;&gt;
+
+Only post with `academia: true` front_matter will be shown on home (index) page. You can write your informations in either one post or some posts with this method. The front_matter doesn&#39;t works in `page`. The `pages` are standalone with its markdown content.
+
+
+## Theme Configurtion
+All of below options can be config in site folder `_config.Academia.yml`
+
+- Top Menu: in-page anchor, new page links or any links you like
+- Side Bar: Support avatar, social links, extra social links (optional), CV_download_link
+- Box-shadow mode (optional)
+
+All icons in page is supported with [font-awesome-5](https://fontawesome.com/) (~~font-awesome-4~~)
+
+&gt; fontawesome-4 is not used since v1.2.1. If you want to update manually, first change CDN stylesheet to fa5. Then change your previous icon class `fa` to `fas` or `fas`.
+
+If you need rss feed, use hexo plugin: [hexo-generator-feed](https://github.com/hexojs/hexo-generator-feed)
+
+![theme-layout](https://raw.githubusercontent.com/PhosphorW/phower-img-folder/master/hexo-theme-academia_layout.png)
+
+## Document
+中文文档：[Hexo-Theme-Academia 说明文档](https://phower.me/2020/03/Hexo-theme-academia-%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3/)
+</code></pre>
+]]></content>
+      <tags>
+        <tag>Example</tag>
+      </tags>
+  </entry>
+</search>
